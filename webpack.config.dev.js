@@ -1,10 +1,11 @@
 import path from 'path';
-
+import webpack from 'webpack';
 export default {
   debug: true,
   devtool: 'inline-source-map',
   noInfo: false,
   entry: [
+    'webpack-hot-middleware/client?reload=true',
     path.resolve(__dirname, 'src/index')
   ],
   target: 'web',
@@ -13,7 +14,11 @@ export default {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  plugins: [],
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ],
   module: {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
