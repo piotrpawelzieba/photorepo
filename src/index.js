@@ -1,7 +1,14 @@
-import './index.css';
-import numeral from 'numeral';
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 
-const courseValue = numeral(1000).format('$0,0.00');
+class App extends Component {
+    render(){
+        return (
+            <div id="app">
+                App
+            </div>
+        );
+    }
+}
 
-document.body.innerHTML = "abb"
-// console.log(`You would pay ${courseValue} for this awesomeddddd course`);
+render(<App />, document.body);
