@@ -28,7 +28,7 @@ export default {
             exclude: /node_modules/,
             loader: 'babel',
             query: {
-                presets: ['es2015', 'react', 'latest']
+                presets: ['es2015', 'react', 'latest', 'stage-2']
             }
         }, {
             test: /\.jsx$/,
