@@ -3,16 +3,23 @@ import {render} from 'react-dom';
 
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
+
+/*      middlewares         */ 
 import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 import rootReducer from './reducers';
-import * as photoActions from './actions/photoActions'
+import {getPhotos} from './actions/photoActions'
+import {getCategories} from './actions/categoriesActions'
 
 import ReduxToastr from 'react-redux-toastr'
 import Library from './containers/Library';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
-store.dispatch(photoActions.fetchPhotos());
+import './index.css';
+const logger = createLogger();
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+store.dispatch(getPhotos());
+store.dispatch(getCategories());
 
 class App extends Component {
     render(){
