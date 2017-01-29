@@ -1,5 +1,9 @@
-const rootUrl = 'http://localhost:3090'
 
-const getPhotos = () => fetch(rootUrl + '/api/photos');
+import {fetchCategories, deleteCategory} from './categories';
+import {fetchPhotos} from './photos';
 
-export {getPhotos};
+
+
+
+
+export {fetchPhotos, fetchCategories, deleteCategory};
