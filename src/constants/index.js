@@ -1,3 +1,5 @@
+export const API_ROOT_URL = 'http://localhost:3090';
+
 export const GET_PHOTOS_SUCCESS = 'GET_PHOTOS_SUCCESS';
 export const GET_PHOTOS_FAILURE = 'GET_PHOTOS_FAILURE';
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
