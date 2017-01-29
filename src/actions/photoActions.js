@@ -1,34 +1,32 @@
 import {
-    FETCH_PHOTOS,
-    FETCH_PHOTOS_SUCCESS,
-    FETCH_PHOTOS_FAILURE
+    GET_PHOTOS_SUCCESS,
+    GET_PHOTOS_FAILURE
 } from '../constants';
-import {getPhotos} from  '../api';
+import {fetchPhotos} from  '../api';
 import {toastr} from 'react-redux-toastr';
 
-const fetchPhotosSuccess = (images) => ({
-    type: FETCH_PHOTOS_SUCCESS,
+const getPhotosSuccess = (images) => ({
+    type: GET_PHOTOS_SUCCESS,
     images
 });
 
-const fetchPhotosFailure = (err) => ({
-    type: FETCH_PHOTOS_FAILURE,
+const getPhotosFailure = (err) => ({
+    type: GET_PHOTOS_FAILURE,
     err
 });
 
-export const fetchPhotos = () => (dispatch) => {
-    getPhotos()
+export const getPhotos = () => (dispatch) => {
+    fetchPhotos()
     .then((response) => {
         return response.json();
     })
     .then((response) => {
-        console.log(response);
-        toastr.success('Fetching Success!');
-        dispatch(fetchPhotosSuccess(response));
+        toastr.success('Fetching images success!');
+        dispatch(getPhotosSuccess(response));
     })
     .catch(err=>{
         console.log(err);
-        toastr.error('Fetching Error', err.toString());
-        dispatch(fetchPhotosFailure(err));
+        toastr.error('Fetching images error!', err.toString());
+        dispatch(getPhotosFailure(err));
     });
 }

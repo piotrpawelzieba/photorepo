@@ -1,7 +1,7 @@
 import {
-    FETCH_PHOTOS,
-    FETCH_PHOTOS_SUCCESS,
-    FETCH_PHOTOS_FAILURE
+    GET_PHOTOS,
+    GET_PHOTOS_SUCCESS,
+    GET_PHOTOS_FAILURE
 } from '../constants';
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
 
 export default function(state=initialState, action){
     switch(action.type){
-        case FETCH_PHOTOS_SUCCESS:
+        case GET_PHOTOS_SUCCESS:
             return {
                 ...state,
                 items: action.images
