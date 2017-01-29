@@ -17,12 +17,9 @@ const getPhotosFailure = (err) => ({
 
 export const getPhotos = () => (dispatch) => {
     fetchPhotos()
-    .then((response) => {
-        return response.json();
-    })
-    .then((response) => {
+    .then(({data: photos}) => {
         toastr.success('Fetching images success!');
-        dispatch(getPhotosSuccess(response));
+        dispatch(getPhotosSuccess(photos));
     })
     .catch(err=>{
         console.log(err);
