@@ -22,7 +22,8 @@ class Library extends Component {
         this.state = {
             listmode: true,
             categoryCreator: {
-                visible: false
+                visible: false,
+                isPrivate: false
             }
         };
 
@@ -31,8 +32,9 @@ class Library extends Component {
         this.showCategoryCreator =  this.showCategoryCreator.bind(this);
         this.hideCategoryCreator =  this.hideCategoryCreator.bind(this);
         this.onCancelClick = this.onCancelClick.bind(this);
+        this.onLockClick = this.onLockClick.bind(this);
         this.setTitle =  this.setTitle.bind(this);
-        this.setPrivacy =  this.setPrivacy.bind(this);
+        // this.setPrivacy =  this.setPrivacy.bind(this);
     }
 
     showCategoryCreator(ev){
@@ -65,7 +67,7 @@ class Library extends Component {
             }
         }
     }) {
-        this.props.addCategory({title: category, isPrivate: false});
+        this.props.addCategory({title: category, isPrivate: this.state.categoryCreator.isPrivate});
         this.hideCategoryCreator();
     }
 
@@ -97,6 +99,10 @@ class Library extends Component {
             }
         });
     }
+    onLockClick(ev) {
+        ev.preventDefault();
+        this.setPrivacy();
+    }
     render(){
         const {images} = this.props;
         const categories = this.getCategories(this.props.images);
@@ -113,6 +119,7 @@ class Library extends Component {
                     onAddClick={this.addCategory}
                     onDeleteClick={this.removeCategory}
                     onCancelClick={this.onCancelClick}
+                    onLockClick={this.onLockClick}
                 />
                 {this.state.listmode ? <ListView images = {images} /> : <GridView images={images} />  }
             </div>

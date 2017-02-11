@@ -95,6 +95,19 @@
         border: 0;
         padding: 0.5em;
         height: 100%;
+        font-weight: bold;
+        color:white;
+    }
+    .categories__input:focus:hover {
+        color: #47D787!important;
+    }
+
+    .categories__item .categories__icons {
+        margin: 5px;
+        display: none!important;
+    }
+    .categories__item:hover .categories__icons {
+        display: inline-block!important;
     }
 
     .categories__input:focus{
@@ -102,6 +115,9 @@
         background: rgba(255,255,255,0.6);
         box-shadow: none;
         outline: none;
+        color: orange;
+        margin: 1px 5px;
+        font-weight: bold;
     }
 
     .fa-check, .fa-times{

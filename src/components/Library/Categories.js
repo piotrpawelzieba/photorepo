@@ -1,7 +1,7 @@
 import React from 'react';
 import './Categories.css';
 import '../../../node_modules/font-awesome/css/font-awesome.css';
-
+import Locker from './Locker';
 
 
 const renderCategory = ({title, itemsCount},pos,  onDeleteClick) => (
@@ -15,13 +15,16 @@ export default ({
         categories, 
         categoryCreator: {
             title="", 
-            visible
+            visible,
+            isPrivate
         },
         setTitle,
         showCategoryCreator,
         onDeleteClick,
         onCancelClick,
-        onAddClick
+        onAddClick,
+        onLockClick
+
     }) => (
         <div>
             <h2>{'Categories:'}</h2>
@@ -38,8 +41,12 @@ export default ({
                     visible && 
                         <li className={"categories__item categories__newItem"} key={9999}> 
                             <input className="categories__input" type="text" name="newCategory" onChange={setTitle} value={title} />
-                            <a className="fa fa-check" data-categoryTitle={title} onClick={onAddClick} aria-hidden="true"></a>
-                            <a className="fa fa-times" onClick={onCancelClick} aria-hidden="true"></a>
+                            <span className="categories__icons"> 
+                                <Locker isPrivate={isPrivate} onLockClick={onLockClick} />
+                                <a className="fa fa-check" data-categoryTitle={title} onClick={onAddClick} aria-hidden="true"></a>
+                                <a className="fa fa-times" onClick={onCancelClick} aria-hidden="true"></a>
+                            </span>
+                           
                         </li>
                 }
             </ul>
