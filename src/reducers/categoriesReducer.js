@@ -2,7 +2,9 @@ import {
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_FAILURE,
     REMOVE_CATEGORY_SUCCESS,
-    REMOVE_CATEGORY_FAILURE
+    REMOVE_CATEGORY_FAILURE,
+    ADD_CATEGORY_SUCCESS,
+    ADD_CATEGORY_FAILURE
 } from '../constants';
 
 
@@ -19,10 +21,11 @@ export default function(state = initialState, action) {
                 items: action.categories,
                 isFetching: false
             }
-        case GET_CATEGORIES_FAILURE:
+        case ADD_CATEGORY_SUCCESS:
             return {
-                err: action.err,
-                ...state
+                ...state,
+                isFetching: false,
+                items: [...state.items, action.category]
             }
         case REMOVE_CATEGORY_SUCCESS:
             const categories = state.items;
@@ -31,6 +34,8 @@ export default function(state = initialState, action) {
                 isFetching: false,
                 items: categories.filter(({title})=>title !== action.category.toLowerCase())
             }
+        case ADD_CATEGORY_FAILURE:
+        case GET_CATEGORIES_FAILURE:
         case REMOVE_CATEGORY_FAILURE:
             return {
                 err: action.err,

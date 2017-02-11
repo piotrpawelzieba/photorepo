@@ -79,3 +79,31 @@
     .categories__item:hover *{
         color:white!important;
     }
+
+    .categories__link{
+        vertical-align: middle;
+            padding: 0.5em;
+            display: block;
+    }
+
+    .categories__newItem {
+        background: orange;
+    }
+
+    .categories__input {
+        background:none;
+        border: 0;
+        padding: 0.5em;
+        height: 100%;
+    }
+
+    .categories__input:focus{
+        /*border: 1px solid white;*/
+        background: rgba(255,255,255,0.6);
+        box-shadow: none;
+        outline: none;
+    }
+
+    .fa-check, .fa-times{
+        margin-left: 0.5em;
+    }
