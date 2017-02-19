@@ -1,9 +1,9 @@
 
 import {fetchCategories, deleteCategory, postCategory} from './categories';
-import {fetchPhotos} from './photos';
+import {fetchPhotos, updatePhoto} from './photos';
 
 
 
 
 
-export {fetchPhotos, fetchCategories, deleteCategory, postCategory};
+export {fetchPhotos, updatePhoto,  fetchCategories, deleteCategory, postCategory};
