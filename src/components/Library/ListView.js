@@ -1,11 +1,19 @@
 import React from 'react';
 import './listview.css';
-const renderListItem = ({url}) => (
-    <img src={`http://localhost:3090/${url}`} className="listview__item" />
-) 
+import ListItem from  './ListItem.jsx';
 
-export default ({images}) => (
+
+
+const renderListItem = ({_id, url, category}, pos, onDrop) => (<ListItem key={pos} id={_id} category={category} url={url} onDrop={onDrop} className={"listview__item"}/>);
+console.log(renderListItem);
+
+let Images = ({images, onDrop}) => (
     <div>
-        {images.map(renderListItem)}
+        {images.map((image, pos)=>renderListItem(image,pos, onDrop))}
     </div>
 );
+
+
+
+console.log({Images});
+export default Images;
