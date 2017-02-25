@@ -123,8 +123,13 @@
         display: inline-block!important;
     }
 
+    .categories__item--isOver{
+        background: white!important;
+        border: 1px solid #47D787;
+    }
     .categories__item--droppable{
-        background: red;
+        background: #47D787;
+        color: white;
     }
 
     .categories__input:focus{
