@@ -13,8 +13,10 @@ import {assignCategory} from '../../actions/photoActions';
 import {
     CategoryCreator,
     GridView, 
-    ListView, 
-    Categories } from '../../components';
+    Images, 
+    Categories,
+    FullImage
+ } from '../../components';
 
 
 class Library extends Component {
@@ -22,6 +24,7 @@ class Library extends Component {
         super(props);
         
         this.state = {
+            image: "",
             listmode: true,
             categoryCreator: {
                 visible: false,
@@ -39,9 +42,14 @@ class Library extends Component {
         this.setTitle =  this.setTitle.bind(this);
         this.onDropOnCategory =  this.onDropOnCategory.bind(this);
         this.onCategoryClick =  this.onCategoryClick.bind(this);
+        this.onGridClick = this.onGridClick.bind(this);
+        this.onListClick = this.onListClick.bind(this);
+        this.onImageClick = this.onImageClick.bind(this);
+        this.onOverlayClick = this.onOverlayClick.bind(this);
+
         // this.setPrivacy =  this.setPrivacy.bind(this);
     }
-
+    
     onCategoryClick(ev){
         ev.preventDefault();
 
@@ -53,6 +61,17 @@ class Library extends Component {
         this.setState({
             filteredImages: images.filter(({category})=> category===clickedCategory.toLowerCase().trim() )
         });
+    }
+
+    onOverlayClick(ev){
+        console.log('on onOverlayClick', ev);
+        this.setState({image: null});
+    }
+    
+    onImageClick({target: {dataset: {id: imgid}}}){
+        if(this.state.listmode) return;
+        const img = this.props.images.find(({_id})=>imgid===_id);
+        this.setState({image: img});
     }
 
     onDropOnCategory(id, payload) {
@@ -126,6 +145,15 @@ class Library extends Component {
         ev.preventDefault();
         this.setPrivacy();
     }
+
+    onGridClick(){
+     this.setState({listmode: false});   
+    }
+
+    onListClick(){
+     this.setState({listmode: true});   
+    }
+
     componentWillReceiveProps(props){
         this.setState({
             filteredImages: props.images
@@ -139,6 +167,14 @@ class Library extends Component {
             <div>
                 <h1>{'PIOTR ZIEBA'}</h1>
                 <h2>{'Library'}</h2>
+                <div className="viewSwitch">
+                    <span onClick={this.onGridClick}>
+                        <a className="fa fa-th-large link" ara-hidden="true"></a>
+                    </span>
+                    <span onClick={this.onListClick}>
+                        <a className="fa fa-list link" ara-hidden="true"></a>
+                    </span>
+                </div>
                 <Categories 
                     categories={categories} 
                     showCategoryCreator={this.showCategoryCreator} 
@@ -150,11 +186,16 @@ class Library extends Component {
                     onCancelClick={this.onCancelClick}
                     onLockClick={this.onLockClick}
                 />
-                {this.state.listmode ? 
-                    <ListView 
-                        images = {this.state.filteredImages} 
-                        onDrop = {this.onDropOnCategory}    
-                    /> : <GridView images={images} />  }
+                <Images 
+                    images = {this.state.filteredImages} 
+                    onDrop = {this.onDropOnCategory}    
+                    listview = {this.state.listmode}
+                    onImageClick={this.onImageClick}
+                />
+                <FullImage
+                    image={this.state.image}
+                    onOverlayClick={this.onOverlayClick}
+                />                 
             </div>
         );
     }

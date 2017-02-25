@@ -1,12 +1,12 @@
-import GridView from './Library/GridView.js';
-import ListView from './Library/ListView.js';
+import Images from './Library/Images.jsx';
 import Categories from './Library/Categories.js';
 import CategoryCreator from './Library/CategoryCreator';
+import FullImage from './Library/FullImage';
 
 
 export {
-    GridView,
-    ListView,
+    Images,
     Categories,
-    CategoryCreator
+    CategoryCreator,
+    FullImage
 }
