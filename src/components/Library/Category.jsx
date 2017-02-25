@@ -13,11 +13,17 @@ const Category = (  {
     isOver,
     canDrop
 }) => {
+    let className = 'categories__item';
+    if(canDrop)
+        className += " categories__item--droppable";
+
+    if(isOver)
+        className += " categories__item--isOver";
     
     return connectDropTarget(
     <li 
         key={key+1} 
-        className={ !canDrop ? "categories__item" : "categories__item categories__item--droppable" }>
+        className={className}>
         <a className={'categories__link'} data-value={title} onClick={onCategoryClick} href={`#${title}`} >{`${title} (${itemsCount})`} </a>  
         <a className="categories__icon fa fa-trash-o" data-category={title} aria-hidden="true" onClick={onDeleteClick}></a>
     </li>
@@ -49,7 +55,6 @@ const Category = (  {
 
 const spec = {
     drop(props, monitor, component) {
-        console.log({item: monitor.getItem()});
         return {
             category: props.category.title.toLowerCase().trim()
         };
