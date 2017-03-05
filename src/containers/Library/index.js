@@ -4,6 +4,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend';
 import {DragDropContext} from 'react-dnd';
+import Dropzone from 'react-dropzone';
+
+
 /*      Actions      */
 import {removeCategory, addCategory} from '../../actions/categoriesActions';
 import {assignCategory} from '../../actions/photoActions';
@@ -15,7 +18,9 @@ import {
     GridView, 
     Images, 
     Categories,
-    FullImage
+    FullImage,
+    ViewSwitch,
+    ImageUploader
  } from '../../components';
 
 
@@ -24,6 +29,7 @@ class Library extends Component {
         super(props);
         
         this.state = {
+            droppedImage: "",
             image: "",
             listmode: true,
             categoryCreator: {
@@ -46,7 +52,8 @@ class Library extends Component {
         this.onListClick = this.onListClick.bind(this);
         this.onImageClick = this.onImageClick.bind(this);
         this.onOverlayClick = this.onOverlayClick.bind(this);
-
+        this.onDrop = this.onDrop.bind(this);
+        this.onOpenClick = this.onOpenClick.bind(this);
         // this.setPrivacy =  this.setPrivacy.bind(this);
     }
     
@@ -154,6 +161,18 @@ class Library extends Component {
      this.setState({listmode: true});   
     }
 
+    onDrop(files) {
+        console.log({files});
+        this.hideDropzone();
+        console.log({files});
+        this.setState({droppedImage: files});
+    }
+
+    onOpenClick() {
+        this.refs.dropzone.open();
+    }
+
+
     componentWillReceiveProps(props){
         this.setState({
             filteredImages: props.images
@@ -167,14 +186,10 @@ class Library extends Component {
             <div>
                 <h1>{'PIOTR ZIEBA'}</h1>
                 <h2>{'Library'}</h2>
-                <div className="viewSwitch">
-                    <span onClick={this.onGridClick}>
-                        <a className="fa fa-th-large link" ara-hidden="true"></a>
-                    </span>
-                    <span onClick={this.onListClick}>
-                        <a className="fa fa-list link" ara-hidden="true"></a>
-                    </span>
-                </div>
+                <ViewSwitch 
+                    onGridClick={this.onGridClick} 
+                    onListClick={this.onListClick}
+                />
                 <Categories 
                     categories={categories} 
                     showCategoryCreator={this.showCategoryCreator} 
@@ -195,7 +210,7 @@ class Library extends Component {
                 <FullImage
                     image={this.state.image}
                     onOverlayClick={this.onOverlayClick}
-                />                 
+                />    
             </div>
         );
     }
