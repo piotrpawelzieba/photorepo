@@ -1,0 +1,164 @@
+/*https://gist.github.com/marcobarbosa/798569*/
+
+/*
+ * Author: http://stuffandnonsense.co.uk/blog/about/hardboiled_css3_media_queries/
+ */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+/* Styles */
+
+    .categories__item{
+        margin-right: 4em;
+        padding: 0.7em;
+        overflow: hidden;
+        position: relative;
+    }
+
+
+
+    
+
+
+    .fa-trash-o{
+        margin-left: .5em;
+        /*position: absolute;
+        right: 0;
+        top:50%;
+        transform: translateY(-50%);*/
+    }
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
+
+    .categories{
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .categories__item:hover{
+        background: #47D787;
+    }
+
+    .categories__item:hover *{
+        color:white!important;
+    }
+    
+
+    .categories__link{
+        vertical-align: middle;
+            padding: 0.5em;
+            display: inline-block;
+            cursor: pointer;
+    }
+
+    .categories__icon{
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    .categories__newItem {
+        background: orange;
+    }
+
+    .categories__input {
+        background:none;
+        border: 0;
+        padding: 0.5em;
+        height: 100%;
+        font-weight: bold;
+        color:white;
+        width:200px;
+        margin: 1px 5px;
+    }
+    .categories__input:active, .categories__input:focus  {
+        width:200px;
+    }
+
+
+    .categories__input:focus:hover {
+        color: #47D787!important;
+    }
+
+    .categories__item .categories__icons {
+        margin: 5px;
+        display: none!important;
+    }
+    .categories__item:hover .categories__icons {
+        display: inline-block!important;
+    }
+
+    .categories__item--isOver{
+        background: white!important;
+        border: 1px solid #47D787;
+    }
+    .categories__item--droppable{
+        background: #47D787;
+        color: white;
+    }
+
+    .categories__item--isActive{
+        background: #47D787;
+        color: white!important;
+    }
+    .categories__item--isActive *{
+        color: white;
+    }
+
+    .categories__newItem--hidden{
+        display: none;
+    }
+
+
+    .categories__input:focus{
+        /*border: 1px solid white;*/
+        background: rgba(255,255,255,0.6);
+        box-shadow: none;
+        outline: none;
+        color: orange;
+        margin: 1px 5px;
+        font-weight: bold;
+    }
+
+    .fa-check, .fa-times{
+        margin-left: 0.5em;
+    }

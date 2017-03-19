@@ -4,7 +4,8 @@ import {
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_FAILURE,
     REMOVE_CATEGORY_SUCCESS,
-    REMOVE_CATEGORY_FAILURE
+    REMOVE_CATEGORY_FAILURE,
+    SET_CATEGORY
 } from '../constants';
 
 import {toastr} from 'react-redux-toastr';
@@ -15,14 +16,20 @@ import {
     postCategory
 } from '../api';
 
-const getCategoriesSuccess = (categories) => ({
+export const getCategoriesSuccess = (categories) => ({
     type: GET_CATEGORIES_SUCCESS,
     categories
 });
 
-const getCategoriesFailure = (err) => ({
+export const getCategoriesFailure = (err) => ({
     type: GET_CATEGORIES_FAILURE,
     err
+});
+
+
+export const setCategory = (category) => ({
+    type: SET_CATEGORY,
+    category
 });
 
 const removeCategorySuccess = (category) => ({
@@ -52,20 +59,18 @@ const addCategoryFailure = (err) => ({
 
 export const getCategories = () => (dispatch) => {
     fetchCategories()
-    .then(({data: categories}) => {
-        dispatch(getCategoriesSuccess(categories));
+    .then(({data}) => {
+        dispatch(getCategoriesSuccess(data));
         toastr.success('Fetching categories success!');
     })
     .catch(err=>{
-        console.log({fetchingCategoriesError: err});
         toastr.error('Fetching categories error!');
         dispatch(getCategoriesFailure(err));
-    })
-}
+    });
+};
 
 
 export const removeCategory = (title) => (dispatch) => {
-    console.log({title});
     deleteCategory(title)
     .then(()=>{
         toastr.success(`Category ${title} has been successfully deleted!`);
@@ -75,10 +80,9 @@ export const removeCategory = (title) => (dispatch) => {
         toastr.error(`Removing category error!`);
         dispatch(removeCategoryFailure(err));
     });
-}
+};
 
 export const addCategory = ({title, isPrivate}) => (dispatch) => {
-    debugger;
     postCategory({title, isPrivate})
     .then(() => {
         toastr.success(`Category ${title} has been successfully added!`);
@@ -86,6 +90,6 @@ export const addCategory = ({title, isPrivate}) => (dispatch) => {
     })
     .catch((err) => {
         toastr.error(`Adding category error!`);
-        dispatch(addCategoryFailure(err))
+        dispatch(addCategoryFailure(err));
     });
-}
+};
