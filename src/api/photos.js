@@ -6,3 +6,5 @@ export const updatePhoto = (id, payload) => axios.put(`${API_ROOT_URL}/api/photo
         ...payload,
         id 
 });
+
+export const postPhoto = (payload) => axios.post(`${API_ROOT_URL}/api/photos`,payload);

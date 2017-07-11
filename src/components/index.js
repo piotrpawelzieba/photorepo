@@ -1,12 +1,14 @@
+import Categories from './Categories';
 import Images from './Library/Images.jsx';
-import Categories from './Library/Categories.js';
-import CategoryCreator from './Library/CategoryCreator';
-import FullImage from './Library/FullImage';
+import FullImage from './Library/FullImage.jsx';
+import ViewSwitch from './Library/ViewSwitch.jsx';
+import ImageUploader from './Library/ImageUploader.jsx';
 
 
 export {
     Images,
     Categories,
-    CategoryCreator,
-    FullImage
-}
+    FullImage,
+    ViewSwitch,
+    ImageUploader
+};

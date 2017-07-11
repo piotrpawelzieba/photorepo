@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import Category from './Category';
+import React, {Component, PropTypes} from 'react';
+import Category from './Category.jsx';
 import Dropzone from 'react-dropzone';
 import "./index.css";
 
@@ -10,15 +10,11 @@ class Drop extends Component {
         
         this.state = {
             isOverCategory: ""
-        }
+        };
     }
-    onDrop(files, arr, {target}){
-        console.log({files, target});
+    onDrop(files, arr, {target: {dataset: {category}}}){
         this.props.hideDropzone();
-        const formData = new FormData();
-        formData.append('photos', files);
-        
-
+        this.props.uploadPhoto(files, category);
     }
     render(){
         return(
@@ -27,7 +23,7 @@ class Drop extends Component {
                     onDragLeave={this.props.onDragLeave}
                 >
                     <Dropzone 
-                        ref='dropzone' 
+                        ref="dropzone" 
                         onDrop={this.onDrop}
                         disableClick={true}
                         className={'dropzoneContainer'}
@@ -44,8 +40,16 @@ class Drop extends Component {
                         </ul>
                     </Dropzone>    
                 </div>
-        )
+        );
     }
 }
+
+Drop.propTypes = {
+    hideDropzone: PropTypes.func.isRequired,
+    uploadPhoto: PropTypes.func.isRequired,
+    showDropzone: PropTypes.bool.isRequired,
+    onDragLeave: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired
+};
 
 export default Drop;

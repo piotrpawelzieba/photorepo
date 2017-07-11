@@ -3,7 +3,6 @@ import {API_ROOT_URL} from '../../constants';
 import './FullImage.css';
 
 const FullImage = ({image='', onOverlayClick}) => {
-    console.log({image});
     return (
             image ? 
             <div className='fullImage'> 

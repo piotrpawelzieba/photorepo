@@ -1,13 +1,21 @@
 import React from 'react'
 
+const onDragEnter = (ev) => {
+    ev.target.className = "dropzone__category dropzone__category--hover";
+}
 
-const Category = ({key, category: {title}, className }) => {
+const onDragLeave = (ev) => {
+    ev.target.className = "dropzone__category";
+}
+
+const Category = ({key, category: {title}, className}) => {
     return(
         <li 
+            data-category={title}
             className={className} 
             key={key} 
-            onDragEnter={(ev)=>(ev.target.className = "dropzone__category dropzone__category--hover")}
-            onDragLeave={(ev)=>(ev.target.className = "dropzone__category")}
+            onDragEnter={onDragEnter}
+            onDragLeave={onDragLeave}
             
         > 
             {title} 

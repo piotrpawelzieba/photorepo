@@ -1,30 +1,28 @@
-
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import ReduxToastr from 'react-redux-toastr'
+import ReduxToastr from 'react-redux-toastr';
+
+import Categories from './containers/Categories';
 import Library from './containers/Library';
 import Dropzone from './containers/Dropzone';
 
+import HTML5Backend from 'react-dnd-html5-backend';
+import {DragDropContext} from 'react-dnd';
 
 import {render} from 'react-dom';
 
 import {createStore, applyMiddleware} from 'redux';
+import rootReducer from './reducers';
 
 /*      middlewares         */ 
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-import rootReducer from './reducers';
-import {getPhotos} from './actions/photoActions'
-import {getCategories} from './actions/categoriesActions'
 
 
 import './index.css';
 const logger = createLogger();
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
-store.dispatch(getPhotos());
-store.dispatch(getCategories());
-
 
 class App extends Component {
     constructor(props){
@@ -37,6 +35,7 @@ class App extends Component {
         };
     }   
     showDropzone(ev){
+        if(this.state.showDropzone) return;
         const {dataTransfer: {types}} = ev;
         const [type = ""] = types; 
         if(type==="Files")
@@ -46,7 +45,7 @@ class App extends Component {
             this.setState({showDropzone: false});
     }
     onDragLeave(ev){
-        const {target, clientX, clientY} = ev;
+        const {clientX, clientY} = ev;
 
         if(!clientX && !clientY)
             this.hideDropzone();
@@ -66,6 +65,7 @@ class App extends Component {
                         transitionOut="fadeOut"
                         progressBar
                     />
+                    <Categories />
                     <Library />
                     <div >
                         <Dropzone 
@@ -80,7 +80,7 @@ class App extends Component {
     }
 }
 
-
+const DraggableApp = DragDropContext(HTML5Backend)(App);
 const container = document.createElement('div');
-render(<App />, container);
+render(<DraggableApp />, container);
 document.body.appendChild(container);

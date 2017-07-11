@@ -1,12 +1,16 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import Dropzone from '../../components/Dropzone';
+import {bindActionCreators} from 'redux';
+import {uploadPhoto} from '../../actions/photoActions';
 
-
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
-        categories: state.categories.items
-    }
-}
+        categories: state.categories.items,
+    };
+};
 
-export default connect(mapStateToProps, null)(Dropzone)
+const mapDispatchToProps = (dispatch) => ({
+    ...bindActionCreators({uploadPhoto}, dispatch),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Dropzone);
 

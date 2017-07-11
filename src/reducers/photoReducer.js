@@ -35,7 +35,13 @@ export default function(state=initialState, action){
             return {
                 ...state,
                 items: newCollection
-            }}
+            };
+        }
+        case ASSIGN_CATEGORY_FAILURE:
+            return {
+                ...state,
+                err: action.err
+            };
         default:
             return state;
     }
