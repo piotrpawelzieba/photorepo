@@ -5,8 +5,8 @@ import {
     ASSIGN_CATEGORY_FAILURE,
     UPLOAD_PHOTO_SUCCESS,
     UPLOAD_PHOTO_ERROR
-} from '../constants';
-import {fetchPhotos, updatePhoto, postPhoto} from  '../api';
+} from '../../constants';
+import {fetchPhotos, updatePhoto, postPhoto} from  '../../api';
 import {toastr} from 'react-redux-toastr';
 
 const getPhotosSuccess = (images) => ({

@@ -3,7 +3,7 @@ import {
     GET_PHOTOS_FAILURE,
     ASSIGN_CATEGORY_FAILURE,
     ASSIGN_CATEGORY_SUCCESS
-} from '../constants';
+} from '../../constants';
 
 const initialState = {
     items: [],

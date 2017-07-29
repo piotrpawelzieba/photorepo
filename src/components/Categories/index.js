@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {object, func} from 'prop-types';
+import { object, func } from 'prop-types';
 import './Categories.css';
 import '../../../node_modules/font-awesome/css/font-awesome.css';
 import Category from './Category.jsx';

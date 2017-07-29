@@ -13,7 +13,7 @@ import {
 
 // ACTION CREATORS
 
-import {getPhotos, assignCategory} from '../../actions/photoActions';
+import {getPhotos, assignCategory} from '../../redux/actions/photoActions';
 
 class Library extends Component {
     constructor(props){
