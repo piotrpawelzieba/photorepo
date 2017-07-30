@@ -15,7 +15,6 @@ import {createStore, applyMiddleware} from 'redux';
 import {rootReducer} from './redux';
 
 /*      middlewares         */ 
-import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import {createEpicMiddleware} from 'redux-observable';
 import {rootEpic} from './redux';
@@ -24,7 +23,7 @@ import {rootEpic} from './redux';
 import './index.css';
 const logger = createLogger();
 const epicMiddleware = createEpicMiddleware(rootEpic);
-const store = createStore(rootReducer, applyMiddleware(epicMiddleware, thunk, logger));
+const store = createStore(rootReducer, applyMiddleware(epicMiddleware, logger));
 
 class App extends Component {
     constructor(props){

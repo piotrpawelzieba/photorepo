@@ -14,7 +14,7 @@ class Drop extends Component {
     }
     onDrop(files, arr, {target: {dataset: {category}}}){
         this.props.hideDropzone();
-        this.props.uploadPhoto(files, category);
+        this.props.uploadPhoto({files, category});
     }
     render(){
         return(

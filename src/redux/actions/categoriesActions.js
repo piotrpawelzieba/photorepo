@@ -1,12 +1,14 @@
 import {
+    ADD_CATEGORY,
     ADD_CATEGORY_SUCCESS,
     ADD_CATEGORY_FAILURE,
+    GET_CATEGORIES,
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_FAILURE,
+    REMOVE_CATEGORY,
     REMOVE_CATEGORY_SUCCESS,
     REMOVE_CATEGORY_FAILURE,
     SET_CATEGORY,
-    GET_CATEGORIES
 } from '../../constants';
 
 import {toastr} from 'react-redux-toastr';
@@ -17,45 +19,18 @@ import {
     postCategory
 } from '../../api';
 
-export const getCategories = () => ({
-    type: GET_CATEGORIES
-});
+import {createActionCreator} from './utils';
 
-export const getCategoriesSuccess = (categories) => ({
-    type: GET_CATEGORIES_SUCCESS,
-    categories
-});
+export const getCategories = createActionCreator(GET_CATEGORIES);
+export const getCategoriesSuccess = createActionCreator(GET_CATEGORIES_SUCCESS);
+export const getCategoriesFailure = createActionCreator(GET_CATEGORIES_FAILURE);
 
-export const getCategoriesFailure = (err) => ({
-    type: GET_CATEGORIES_FAILURE,
-    err
-});
+export const setCategory = createActionCreator(SET_CATEGORY);
 
+export const removeCategory = createActionCreator(REMOVE_CATEGORY);
+export const removeCategorySuccess = createActionCreator(REMOVE_CATEGORY_SUCCESS);
+export const removeCategoryFailure = createActionCreator(REMOVE_CATEGORY_FAILURE);
 
-export const setCategory = (category) => ({
-    type: SET_CATEGORY,
-    category
-});
-
-const removeCategorySuccess = (category) => ({
-    type: REMOVE_CATEGORY_SUCCESS,
-    category
-});
-
-const removeCategoryFailure = (err) => ({
-    type: REMOVE_CATEGORY_FAILURE,
-    err
-});
-
-const addCategorySuccess = (newCategory) => ({
-    type: ADD_CATEGORY_SUCCESS,
-    category: newCategory
-});
-
-const addCategoryFailure = (err) => ({
-    type: ADD_CATEGORY_FAILURE,
-    err
-});
-
-
-
+export const addCategory = createActionCreator(ADD_CATEGORY);
+export const addCategorySuccess = createActionCreator(ADD_CATEGORY_SUCCESS);
+export const addCategoryFailure = createActionCreator(ADD_CATEGORY_FAILURE);

@@ -65,7 +65,7 @@ class Categories extends Component {
     onCategoryClick = (ev) => {
         ev.preventDefault();
         const category = ev.target.dataset.value;
-        this.props.setCategory(category);
+        this.props.setCategory({category});
     }
 
     onAddClick = (ev) => {
@@ -76,7 +76,7 @@ class Categories extends Component {
     }
     onDeleteClick = (ev) => {
         const { category } = ev.target.dataset;
-        this.props.removeCategory(category);
+        this.props.removeCategory({category});
     }
     onCancelClick = (ev) => {
         ev.preventDefault();

@@ -64,7 +64,7 @@ class Library extends Component {
         this.refs.dropzone.open();
     }
     onDrop(id, payload){
-        this.props.assignCategory(id, payload);
+        this.props.assignCategory({id, payload});
     }
     render(){
         return (

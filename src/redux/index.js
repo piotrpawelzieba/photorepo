@@ -1,5 +1,6 @@
 import { combineEpics } from 'redux-observable';
 import {removeCategory, addCategory, getCategories} from './epics/categories';
+import {getPhotos, assignCategory, uploadPhoto} from './epics/photos';
 
 import { combineReducers } from 'redux';
 import photoReducer from './reducers/photoReducer';
@@ -16,5 +17,8 @@ export const rootReducer = combineReducers({
 export const rootEpic = combineEpics(
     getCategories,
     removeCategory,
-    addCategory
+    addCategory,
+    getPhotos,
+    assignCategory,
+    uploadPhoto
 );

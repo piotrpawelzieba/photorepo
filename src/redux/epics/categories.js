@@ -1,4 +1,4 @@
-import { fetchCategories } from '../../api'
+import { fetchCategories, deleteCategory, postCategory, } from '../../api'
 import {
     GET_CATEGORIES,
     GET_CATEGORIES_SUCCESS,
@@ -9,14 +9,15 @@ import {
     ADD_CATEGORY_FAILURE,
     REMOVE_CATEGORY_FAILURE
 } from '../../constants';
-import {toastr} from 'react-redux-toastr';
-import Rx from 'rxjs';
+import { toastr } from 'react-redux-toastr';
+import { Observable } from 'rxjs';
+import { removeCategorySuccess, removeCategoryFailure, addCategorySuccess, addCategoryFailure } from '../actions/categoriesActions';
 
 export const getCategories = action$ => (
     action$
         .filter(action => action.type === GET_CATEGORIES)
         .mergeMap(() => fetchCategories())
-        .map(({data}) => {
+        .map(({ data }) => {
             toastr.success('Fetching categories success!!!');
             return {
                 type: GET_CATEGORIES_SUCCESS,
@@ -35,20 +36,18 @@ export const getCategories = action$ => (
 export const removeCategory = (action$) => (
     action$
         .filter(({ type }) => type === REMOVE_CATEGORY)
-        .mergeMap(({ title }) => deleteCategory(title))
-        .map(() => {
-            toastr.success(`Category ${title} has been successfully deleted!`)
-            return ({
-                type: REMOVE_CATEGORY_SUCCESS
-
-            })
+        .mergeMap(({ category }) => (
+            Observable
+                .forkJoin(deleteCategory(category))
+                .map(() => ({ category }))
+        ))
+        .map(({ category }) => {
+            toastr.success(`Category ${category} has been successfully deleted!`)
+            return removeCategorySuccess({ category });
         })
         .catch(err => {
             toastr.error(`Removing category error!`);
-            return Observable.of({
-                type: REMOVE_CATEGORY_FAILURE,
-                err: err
-            });
+            return Observable.of(removeCategoryFailure({ err }));
         })
 )
 
@@ -56,22 +55,19 @@ export const addCategory = (action$) => (
     action$
         .filter(({ type }) => type === ADD_CATEGORY)
         .mergeMap(({ title, isPrivate }) => (
-            postCategory({ title, isPrivate })
-                .map(() => { title, isPrivate })
+            Observable
+                .forkJoin(postCategory({ title, isPrivate }))
+                .map((response) => ({
+                    title, isPrivate
+                }))
         ))
         .map(({ title, isPrivate }) => {
             toastr.success(`Category ${title} has been successfully added!`);
-            return ({
-                type: ADD_CATEGORY_SUCCESS,
-                category: {title, isPrivate}
-            })
+            return addCategorySuccess({ category: { title, isPrivate } })
         })
         .catch(err => {
             toastr.error(`Adding category error!`);
-            return Observable.of({
-                type: ADD_CATEGORY_FAILURE,
-                err: err
-            });
+            return Observable.of(addCategoryFailure({ err }));
         })
 );
 
