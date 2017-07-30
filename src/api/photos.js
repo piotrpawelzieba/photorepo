@@ -8,3 +8,4 @@ export const updatePhoto = (id, payload) => axios.put(`${API_ROOT_URL}/api/photo
 });
 
 export const postPhoto = (payload) => axios.post(`${API_ROOT_URL}/api/photos`,payload);
+export const deletePhoto = (id) => axios.delete(`${API_ROOT_URL}/api/photos/${id}`);

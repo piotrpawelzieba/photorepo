@@ -13,7 +13,7 @@ import {
 
 // ACTION CREATORS
 
-import {getPhotos, assignCategory} from '../../redux/actions/photoActions';
+import {getPhotos, assignCategory, deletePhoto} from '../../redux/actions/photoActions';
 
 class Library extends Component {
     constructor(props){
@@ -66,6 +66,9 @@ class Library extends Component {
     onDrop(id, payload){
         this.props.assignCategory({id, payload});
     }
+    onDeleteClick = (id) => (ev) => {
+        this.props.deletePhoto({id});
+    }
     render(){
         return (
             <div>
@@ -78,6 +81,7 @@ class Library extends Component {
                     onDrop = {this.onDrop}    
                     listview = {this.state.listmode}
                     onImageClick={this.onImageClick}
+                    onDeleteClick={this.onDeleteClick}
                 />
                 <FullImage
                     image={this.state.image}
@@ -96,14 +100,16 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     ...bindActionCreators({
         getPhotos,
-        assignCategory
+        assignCategory,
+        deletePhoto
     }, dispatch),
 });
 
 Library.propTypes = {
     images: PropTypes.array.isRequired,
     getPhotos: PropTypes.func.isRequired,
-    assignCategory: PropTypes.func.isRequired
+    assignCategory: PropTypes.func.isRequired,
+    deletePhoto: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Library);

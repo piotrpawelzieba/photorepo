@@ -1,8 +1,9 @@
-import { fetchPhotos, updatePhoto, postPhoto } from '../../api'
+import { fetchPhotos, updatePhoto, postPhoto, deletePhoto as delPhoto } from '../../api'
 import {
     GET_PHOTOS,
     UPLOAD_PHOTO,
-    ASSIGN_CATEGORY
+    ASSIGN_CATEGORY,
+    DELETE_PHOTO
 } from '../../constants';
 
 import {
@@ -11,11 +12,15 @@ import {
     assignCategorySuccess,
     assignCategoryFailure,
     uploadPhotoFailure,
-    uploadPhotoSuccess
+    uploadPhotoSuccess,
+    deletePhotoFailure,
+    deletePhotoSuccess
 } from '../actions/photoActions';
 
+
+
 import { toastr } from 'react-redux-toastr';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 export const getPhotos = action$ => (
     action$
@@ -58,13 +63,9 @@ export const uploadPhoto = (action$) => (
 export const assignCategory = (action$) => (
     action$
         .filter(({ type }) => type === ASSIGN_CATEGORY)
-        .mergeMap(({ id, payload }) => {
-            debugger;
-            return (
-                Observable.forkJoin([Observable.of({ id, payload }), updatePhoto(id, payload)])
-            )
-            }
-        )
+        .mergeMap(({ id, payload }) => (
+            Observable.forkJoin([Observable.of({ id, payload }), updatePhoto(id, payload)])
+        ))
         .map(([{ id, payload }, response]) => {
             toastr.success(`Category has been assigned!`)
             return assignCategorySuccess({ id, payload });
@@ -72,6 +73,23 @@ export const assignCategory = (action$) => (
         .catch(err => {
             toastr.error(`Asigning category error!`);
             return Observable.of(assignCategoryFailure({ err }));
+        })
+);
+
+
+export const deletePhoto = (action$) => (
+    action$
+        .filter(({ type }) => type === DELETE_PHOTO)
+        .mergeMap(({ id }) => (
+            Observable.forkJoin([Observable.of(id), delPhoto(id)])
+        ))
+        .map(([id]) => {
+            toastr.success(`Photo has been successufully deleted!`)
+            return deletePhotoSuccess({ id });
+        })
+        .catch(err => {
+            toastr.error(`Deleteng photo error!`);
+            return Observable.of(deletePhotoFailure({ err }));
         })
 );
 

@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
-import {DragSource} from 'react-dnd';
-import {API_ROOT_URL} from '../../constants';
+import React, { Component } from 'react';
+import { DragSource } from 'react-dnd';
+import { API_ROOT_URL } from '../../constants';
 
-const Image = ({key, id, url, category, connectDragSource, onDrop, className, onImageClick}) => {
+const Image = ({ key, id, url, category, connectDragSource, onDrop, className, onImageClick, onDeleteClick }) => {
 
     return connectDragSource(
         <div className={className} data-id={id} key={key} onClick={onImageClick}>
+            <i className="fa fa-trash-o" aria-hidden="true" onClick={onDeleteClick(id)}></i>
             <img data-id={id} src={`${API_ROOT_URL}/${url}`} />
         </div>
     );
@@ -21,9 +22,9 @@ const spec = {
     },
     endDrag: (props, monitor, component) => {
         const dropResult = monitor.getDropResult();
-        if(dropResult)
-            props.onDrop(props.id, dropResult);  
-        
+        if (dropResult)
+            props.onDrop(props.id, dropResult);
+
     },
     canDrag: (props, monitor, component) => {
         return true;

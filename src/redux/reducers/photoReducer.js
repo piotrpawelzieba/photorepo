@@ -4,7 +4,9 @@ import {
     ASSIGN_CATEGORY_FAILURE,
     ASSIGN_CATEGORY_SUCCESS,
     UPLOAD_PHOTO_SUCCESS,
-    UPLOAD_PHOTO_ERROR
+    UPLOAD_PHOTO_ERROR,
+    DELETE_PHOTO_FAILURE,
+    DELETE_PHOTO_SUCCESS
 } from '../../constants';
 
 const initialState = {
@@ -39,6 +41,12 @@ export default function (state = initialState, action) {
                 ...state,
                 items: [...state.items, ...action.photos]
             }
+        case DELETE_PHOTO_SUCCESS:
+            return {
+                ...state,
+                items: state.items.filter(photo => photo._id !== action.id)
+            }
+        case DELETE_PHOTO_FAILURE:
         case GET_PHOTOS_FAILURE:
         case UPLOAD_PHOTO_ERROR:
         case ASSIGN_CATEGORY_FAILURE:
