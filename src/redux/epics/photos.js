@@ -34,7 +34,7 @@ export const getPhotos = action$ => (
 export const uploadPhoto = (action$) => (
     action$
         .filter(({ type }) => type === UPLOAD_PHOTO)
-        .map(({ files, category }) => {
+        .mergeMap(({ files, category }) => {
             const formData = new FormData();
             files
                 .forEach(file => {
@@ -47,8 +47,7 @@ export const uploadPhoto = (action$) => (
         })
         .map(response => {
             toastr.success('Photo has been succesfully uploaded!');
-            debugger;
-            return uploadPhotoSuccess({ photos: response });
+            return uploadPhotoSuccess({ photos: response.data });
         })
         .catch(err => {
             toastr.error('Photo upload failure!');
