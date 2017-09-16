@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { object, func } from 'prop-types';
+import { object, func, string } from 'prop-types';
 import './Categories.css';
 import '../../../node_modules/font-awesome/css/font-awesome.css';
 import Category from './Category.jsx';
@@ -9,6 +9,7 @@ import NewCategoryButton from './NewCategoryButton.jsx';
 class Categories extends Component {
     static propTypes = {
         categories: object.isRequired,
+        activeCategory: string.isRequired,
         getCategories: func.isRequired,
         addCategory: func.isRequired,
         removeCategory: func.isRequired,
@@ -89,6 +90,8 @@ class Categories extends Component {
 
     componentDidMount() {
         this.props.getCategories();
+        if(this.props.activeCategory)
+            this.props.setCategory({category: this.props.activeCategory});
     }
 
     renderExistingCategories() {

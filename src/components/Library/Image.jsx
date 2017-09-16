@@ -7,6 +7,7 @@ const Image = ({ key, id, url, category, connectDragSource, onDrop, className, o
     return connectDragSource(
         <div className={className} data-id={id} key={key} onClick={onImageClick}>
             <i className="fa fa-trash-o" aria-hidden="true" onClick={onDeleteClick(id)}></i>
+            <i className="fa fa-pencil" aria-hidden="true" ></i>
             <img data-id={id} src={`${API_ROOT_URL}/${url}`} />
         </div>
     );

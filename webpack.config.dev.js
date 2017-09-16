@@ -1,7 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 export default {
-    resolve:{
+    resolve: {
         extensions: ["", ".js", ".jsx", ".json"]
     },
     debug: true,
@@ -23,6 +23,7 @@ export default {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
     ],
+
     module: {
         loaders: [{
             test: /\.js$/,
@@ -43,7 +44,7 @@ export default {
             loader: 'style!css!sass!resolve-url!sass?sourceMap'
         }, {
             test: /\.css$/,
-            loaders: ['style','css']
+            loaders: ['style', 'css']
         }, {
             test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             loader: "url-loader?limit=10000&minetype=application/font-woff"
