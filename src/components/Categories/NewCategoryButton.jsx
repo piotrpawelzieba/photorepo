@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-const NewCategoryButton = ({onNewCategoryClick}) => {
-    return(
-        <li key={0} className={"categories__item"} >
-            <a className={'categories__link'} href="#newCategory" onClick={onNewCategoryClick}>
-                {'New Category'}
-            </a>
-        </li>
-    )
-}
-export default NewCategoryButton
+type TProps = {
+  onNewCategoryClick: (event: SyntheticEvent<HTMLButtonElement>) => void,
+};
+
+const NewCategoryButton = ({ onNewCategoryClick }: TProps) => (
+  <li className="categories__item">
+    <button className="categories__button" onClick={onNewCategoryClick}>
+      {'New Category'}
+    </button>
+  </li>
+);
+
+export default NewCategoryButton;
