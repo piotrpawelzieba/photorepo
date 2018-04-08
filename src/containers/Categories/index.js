@@ -1,33 +1,37 @@
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Categories from '../../components/Categories';
-
-import { bindActionCreators } from 'redux';
-
-/*      Actions      */
-import { removeCategory, addCategory, getCategories, setCategory } from '../../redux/actions/categoriesActions'
+import {
+  removeCategory,
+  addCategory,
+  getCategories,
+  setCategory,
+} from '../../redux/actions/categoriesActions';
 import { assignCategory } from '../../redux/actions/photoActions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
+  const categories = {
+    ...state.categories,
+    items: state.categories.items.map(category => ({
+      ...category,
+      count: state.images.items.filter(img => img.category === category.title)
+        .length,
+    })),
+  };
 
-    const categories = {
-        ...state.categories,
-        items: state.categories.items.map((category) => ({
-            ...category,
-            count: state.images.items.filter(img => img.category === category.title).length
-        }))
-    };
-
-    return { categories };
+  return { categories };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    ...bindActionCreators({
-        removeCategory,
-        addCategory,
-        getCategories,
-        setCategory,
-        assignCategory
-    }, dispatch),
-});
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      removeCategory,
+      addCategory,
+      getCategories,
+      setCategory,
+      assignCategory,
+    },
+    dispatch,
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

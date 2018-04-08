@@ -1,19 +1,23 @@
-import React, {PropTypes} from 'react';
+// @flow
+import * as React from 'react';
+import FontAwesome from 'react-fontawesome';
 
-const Locker = (props) => {
-    const {isPrivate, onLockClick, className} = props;
-
-    if(isPrivate){
-        return <a className={className + " fa fa-lock"} onClick={onLockClick} aria-hidden="true"/>;
-    } else {
-        return <a className={className + " fa fa-unlock"} onClick={onLockClick} aria-hidden="true"/>;
-    }
+type TProps = {
+  isPrivate: boolean,
+  onLockClick: (event: SyntheticEvent<HTMLButtonElement>) => void,
+  className: string,
 };
 
-Locker.propTypes = {
-    isPrivate: PropTypes.bool.isRequired,
-    onLockClick: PropTypes.func.isRequired,
-    className: PropTypes.string.isRequired
+const Locker = (props: TProps) => {
+  const { isPrivate, onLockClick, className } = props;
+  const icon = isPrivate ? 'lock' : 'unlock';
+  return (
+    <React.Fragment>
+      <button className={className} onClick={onLockClick}>
+        <FontAwesome name={icon} />
+      </button>
+    </React.Fragment>
+  );
 };
 
 export default Locker;

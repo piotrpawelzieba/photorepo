@@ -1,14 +1,20 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
-export default function({onGridClick, onListClick}){
-    return (
-        <div className="viewSwitch">
-            <span onClick={onGridClick}>
-                <a className="fa fa-th-large link" ara-hidden="true"></a>
-            </span>
-            <span onClick={onListClick}>
-                <a className="fa fa-list link" ara-hidden="true"></a>
-            </span>
-        </div>
-    );
-}
+type TProps = {
+  onGridClick: () => void,
+  onListClick: () => void,
+};
+
+const ViewSwitch = ({ onGridClick, onListClick }: TProps) => (
+  <div className="viewSwitch">
+    <button onClick={onGridClick}>
+      <FontAwesome name="th-large" />
+    </button>
+    <button onClick={onListClick}>
+      <FontAwesome name="list" />
+    </button>
+  </div>
+);
+
+export default ViewSwitch;

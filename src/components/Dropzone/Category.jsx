@@ -1,25 +1,30 @@
-import React from 'react'
+// @flow
+import React from 'react';
 
-const onDragEnter = (ev) => {
-    ev.target.className = "dropzone__category dropzone__category--hover";
-}
+const onDragEnter = (event: SyntheticEvent<HTMLButtonElement>) => {
+  // eslint-disable-next-line
+  event.currentTarget.className =
+    'dropzone__category dropzone__category--hover';
+};
 
-const onDragLeave = (ev) => {
-    ev.target.className = "dropzone__category";
-}
+const onDragLeave = (event: SyntheticEvent<HTMLButtonElement>) => {
+  // eslint-disable-next-line
+  event.currentTarget.className = 'dropzone__category';
+};
 
-const Category = ({key, category: {title}, className}) => {
-    return(
-        <li 
-            data-category={title}
-            className={className} 
-            key={key} 
-            onDragEnter={onDragEnter}
-            onDragLeave={onDragLeave}
-            
-        > 
-            {title} 
-        </li>
-    )
-}
-export default Category
+type TProps = {
+  category: TCategory,
+  className: string,
+};
+
+const Category = ({ category, className }: TProps) => (
+  <li
+    data-category={category.title}
+    className={className}
+    onDragEnter={onDragEnter}
+    onDragLeave={onDragLeave}
+  >
+    {category.title}
+  </li>
+);
+export default Category;

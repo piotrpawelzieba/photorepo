@@ -1,54 +1,18 @@
-/*https://gist.github.com/marcobarbosa/798569*/
-
-/*
- * Author: http://stuffandnonsense.co.uk/blog/about/hardboiled_css3_media_queries/
- */
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-/* Styles */
+button {
+  background: none;
+  border: none;
 }
-
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width : 321px) {
-/* Styles */
-}
-
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
-/* Styles */
-}
-
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-/* Styles */
-}
-
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-/* Styles */
-}
-
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-/* Styles */
-}
-
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 1224px) {
 /* Styles */
 
     .categories__item{
-        margin-right: 4em;
-        padding: 0.7em;
         overflow: hidden;
         position: relative;
+        display: flex;
+        padding: 5px;
+
     }
-
-
-
-    
-
 
     .fa-trash-o{
         margin-left: .5em;
@@ -73,6 +37,7 @@
     .categories{
         display: flex;
         justify-content: flex-start;
+        flex-wrap: wrap;
     }
 
     .categories__item:hover{
@@ -82,18 +47,23 @@
     .categories__item:hover *{
         color:white!important;
     }
-    
 
-    .categories__link{
-        vertical-align: middle;
-            padding: 0.5em;
-            display: inline-block;
-            cursor: pointer;
+
+    .categories__button{
+      border: none;
+      background: none;
+      vertical-align: middle;
+      display: inline-block;
+      cursor: pointer;
+      width: 100%;
+      white-space: nowrap;
     }
 
     .categories__icon{
-        vertical-align: middle;
-        cursor: pointer;
+      background: none;
+      border: none;
+      vertical-align: middle;
+      cursor: pointer;
     }
 
     .categories__newItem {
