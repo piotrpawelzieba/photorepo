@@ -2,12 +2,11 @@ import path from 'path';
 import webpack from 'webpack';
 
 export default {
+  mode: 'development',
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
   },
-  debug: true,
   devtool: 'inline-source-map',
-  noInfo: false,
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client?reload=true',
@@ -20,50 +19,57 @@ export default {
     filename: 'bundle.js',
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
-
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'es2017', 'react', 'stage-2'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', 'es2017', 'react', 'stage-2'],
+          },
         },
       },
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['es2017', 'react', 'stage-2'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2017', 'react', 'stage-2'],
+          },
         },
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!sass!resolve-url!sass?sourceMap',
+        use: {
+          loader: 'style-loader!css!sass!resolve-url!sass?sourceMap',
+        },
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css'],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&minetype=application/font-woff',
+        use: {
+          loader: 'url-loader?limit=10000&minetype=application/font-woff',
+        },
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader',
+        use: {
+          loader: 'file-loader',
+        },
       },
       {
         test: /\.(jpg|png)$/,
-        loader: 'file-loader',
-        options: {
-          limit: 25000,
+        use: {
+          loader: 'file-loader',
         },
       },
     ],
