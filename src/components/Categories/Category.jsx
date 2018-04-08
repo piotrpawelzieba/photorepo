@@ -26,9 +26,9 @@ const Category = (props: TProps) => {
   } = props;
 
   let className: string = 'categories__item';
-  className += canDrop ? `${className} categories__item--droppable` : '';
-  className += isOver ? `${className} categories__item--isOver` : '';
-  className += isActive ? `${className} categories__item--isActive` : '';
+  className += canDrop ? ` ${className} categories__item--droppable` : '';
+  className += isOver ? ` ${className} categories__item--isOver` : '';
+  className += isActive ? ` ${className} categories__item--isActive` : '';
 
   return connectDropTarget(
     <li className={className}>
