@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 /*      middlewares         */
 import createLogger from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
