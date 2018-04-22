@@ -1,13 +1,13 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Categories from '../../components/Categories';
+import Categories from 'components/Categories';
 import {
   removeCategory,
   addCategory,
   getCategories,
   setCategory,
-} from '../../redux/actions/categoriesActions';
-import { assignCategory } from '../../redux/actions/photoActions';
+} from 'store/redux/actions/categoriesActions';
+import { assignCategory } from 'store/redux/actions/photoActions';
 
 const mapStateToProps = state => {
   const categories = {

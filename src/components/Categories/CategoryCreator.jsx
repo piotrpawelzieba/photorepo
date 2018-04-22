@@ -1,5 +1,7 @@
 import FontAwesome from 'react-fontawesome';
 import React from 'react';
+import { Button } from 'shared/styled';
+import { StyledNewCategory, StyledCategoryInput } from './styled';
 import Locker from './Locker';
 
 type TProps = {
@@ -33,10 +35,9 @@ class CategoryCreator extends React.Component<TProps> {
     } = this.props;
 
     return (
-      <li className="categories__item categories__newItem">
-        <input
-          ref={this.assignInputRef}
-          className="categories__input"
+      <StyledNewCategory>
+        <StyledCategoryInput
+          innerRef={this.assignInputRef}
           type="text"
           name="newCategory"
           onChange={onChange}
@@ -48,14 +49,14 @@ class CategoryCreator extends React.Component<TProps> {
             isPrivate={isPrivate}
             onLockClick={onLockClick}
           />
-          <button data-categoryTitle={title} onClick={onAddClick}>
+          <Button data-categoryTitle={title} onClick={onAddClick}>
             <FontAwesome name="check" />
-          </button>
-          <button data-categoryTitle={title} onClick={onCancelClick}>
+          </Button>
+          <Button data-categoryTitle={title} onClick={onCancelClick}>
             <FontAwesome name="times" />
-          </button>
+          </Button>
         </span>
-      </li>
+      </StyledNewCategory>
     );
   }
 }

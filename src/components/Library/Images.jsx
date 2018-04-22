@@ -1,22 +1,7 @@
+// @flow
 import React from 'react';
 import './Images.css';
 import Image from './Image';
-
-const renderListItem = (onDrop, className, onImageClick, onDeleteClick) => (
-  { _id, url, category }: TImage,
-  pos,
-) => (
-  <Image
-    key={pos}
-    id={_id}
-    category={category}
-    url={url}
-    onDrop={onDrop}
-    className={className}
-    onImageClick={onImageClick}
-    onDeleteClick={onDeleteClick}
-  />
-);
 
 type TProps = {
   images: Array<TImage>,
@@ -25,6 +10,9 @@ type TProps = {
   onImageClick: () => void,
   onDeleteClick: () => void,
 };
+const renderItem = props => ({ _id, url, category }: TImage) => (
+  <Image key={_id} id={_id} category={category} url={url} {...props} />
+);
 
 const Images = ({
   images,
@@ -32,17 +20,10 @@ const Images = ({
   listview,
   onImageClick,
   onDeleteClick,
-}: TProps) => {
-  const itemClass = listview ? 'listview__item' : 'gridview__item';
-  const wrapperClass = listview ? 'listview' : 'gridview';
-
-  return (
-    <div className={`images ${wrapperClass}`}>
-      {images.map(
-        renderListItem(onDrop, itemClass, onImageClick, onDeleteClick),
-      )}
-    </div>
-  );
-};
+}: TProps) => (
+  <div>
+    {images.map(renderItem({ onDrop, onImageClick, onDeleteClick, listview }))}
+  </div>
+);
 
 export default Images;

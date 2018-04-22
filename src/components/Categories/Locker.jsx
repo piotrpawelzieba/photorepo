@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { Button } from 'shared/styled';
 
 type TProps = {
   isPrivate: boolean,
@@ -13,9 +14,9 @@ const Locker = (props: TProps) => {
   const icon = isPrivate ? 'lock' : 'unlock';
   return (
     <React.Fragment>
-      <button className={className} onClick={onLockClick}>
+      <Button className={className} onClick={onLockClick}>
         <FontAwesome name={icon} />
-      </button>
+      </Button>
     </React.Fragment>
   );
 };

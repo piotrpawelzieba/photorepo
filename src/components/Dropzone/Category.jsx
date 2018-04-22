@@ -1,5 +1,7 @@
 // @flow
 import React from 'react';
+import { Col } from 'antd';
+import { StyledDropzoneCategory } from './styled';
 
 const onDragEnter = (event: SyntheticEvent<HTMLButtonElement>) => {
   // eslint-disable-next-line
@@ -14,17 +16,17 @@ const onDragLeave = (event: SyntheticEvent<HTMLButtonElement>) => {
 
 type TProps = {
   category: TCategory,
-  className: string,
 };
 
-const Category = ({ category, className }: TProps) => (
-  <li
-    data-category={category.title}
-    className={className}
-    onDragEnter={onDragEnter}
-    onDragLeave={onDragLeave}
-  >
-    {category.title}
-  </li>
+const Category = ({ category }: TProps) => (
+  <Col>
+    <StyledDropzoneCategory
+      data-category={category.title}
+      onDragEnter={onDragEnter}
+      onDragLeave={onDragLeave}
+    >
+      <div>{category.title}</div>
+    </StyledDropzoneCategory>
+  </Col>
 );
 export default Category;

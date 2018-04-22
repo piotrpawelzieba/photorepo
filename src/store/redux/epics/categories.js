@@ -1,19 +1,19 @@
 import { Observable } from 'rxjs';
 import { toastr } from 'react-redux-toastr';
-import { fetchCategories, deleteCategory, postCategory } from '../../api';
+import { fetchCategories, deleteCategory, postCategory } from 'api';
 import {
   GET_CATEGORIES,
   GET_CATEGORIES_SUCCESS,
   GET_CATEGORIES_FAILURE,
   REMOVE_CATEGORY,
   ADD_CATEGORY,
-} from '../../constants';
+} from 'store/constants';
 import {
   removeCategorySuccess,
   removeCategoryFailure,
   addCategorySuccess,
   addCategoryFailure,
-} from '../actions/categoriesActions';
+} from 'store/redux/actions/categoriesActions';
 
 export const getCategories = action$ =>
   action$

@@ -3,6 +3,8 @@ import * as React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { DropTarget } from 'react-dnd';
 import type { ConnectDropTarget } from 'react-dnd';
+import { Button } from 'shared/styled';
+import { StyledCategory } from './styled';
 
 type TProps = {
   category: TCategory,
@@ -16,7 +18,7 @@ type TProps = {
 
 const Category = (props: TProps) => {
   const {
-    category: { title, count },
+    category,
     isActive,
     onDeleteClick,
     onCategoryClick,
@@ -25,38 +27,25 @@ const Category = (props: TProps) => {
     canDrop,
   } = props;
 
-  let className: string = 'categories__item';
-  className += canDrop ? ` ${className} categories__item--droppable` : '';
-  className += isOver ? ` ${className} categories__item--isOver` : '';
-  className += isActive ? ` ${className} categories__item--isActive` : '';
-
   return connectDropTarget(
-    <li className={className}>
-      <button
-        className="categories__button"
-        data-value={title}
-        onClick={onCategoryClick}
-      >
-        {`${title} (${count})`}
-      </button>
-      <button
-        className="categories__icon"
-        data-category={title}
-        onClick={onDeleteClick}
-      >
-        <FontAwesome name="trash-o">Delete</FontAwesome>
-      </button>
-    </li>,
+    <div>
+      <StyledCategory isActive={isActive} isOver={isOver} canDrop={canDrop}>
+        <Button data-value={category.title} onClick={onCategoryClick}>
+          {`${category.title} (${category.count})`}
+        </Button>
+        <Button data-category={category.title} onClick={onDeleteClick}>
+          <FontAwesome name="trash-o">Delete</FontAwesome>
+        </Button>
+      </StyledCategory>
+    </div>,
   );
 };
 
 const spec = {
-  drop(props) {
-    return {
-      category: props.category.title.toLowerCase().trim(),
-    };
-  },
-  canDrop(props, monitor) {
+  drop: props => ({
+    category: props.category.title.toLowerCase().trim(),
+  }),
+  canDrop: (props, monitor) => {
     const { category } = monitor.getItem().props;
     return category !== props.category.title.toLowerCase();
   },

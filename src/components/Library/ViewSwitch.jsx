@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { Button } from 'shared/styled';
 
 type TProps = {
   onGridClick: () => void,
@@ -8,12 +9,12 @@ type TProps = {
 
 const ViewSwitch = ({ onGridClick, onListClick }: TProps) => (
   <div className="viewSwitch">
-    <button onClick={onGridClick}>
+    <Button onClick={onGridClick}>
       <FontAwesome name="th-large" />
-    </button>
-    <button onClick={onListClick}>
+    </Button>
+    <Button onClick={onListClick}>
       <FontAwesome name="list" />
-    </button>
+    </Button>
   </div>
 );
 

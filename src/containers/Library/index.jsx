@@ -8,7 +8,7 @@ import {
   getPhotos,
   assignCategory,
   deletePhoto,
-} from '../../redux/actions/photoActions';
+} from '../../store/redux/actions/photoActions';
 
 type TProps = {
   images: Array<TImage>,

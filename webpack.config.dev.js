@@ -1,9 +1,16 @@
-import path from 'path';
-import webpack from 'webpack';
+const path = require('path');
+const webpack = require('webpack');
 
-export default {
+module.exports = {
   mode: 'development',
+  node: {
+    constants: false,
+  },
   resolve: {
+    alias: {
+      constants: path.resolve(__dirname, 'src/constants'),
+    },
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     extensions: ['.js', '.jsx', '.json'],
   },
   devtool: 'inline-source-map',

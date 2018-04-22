@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
-import './Categories.css';
-import '../../../node_modules/font-awesome/css/font-awesome.css';
+import { Row } from 'antd';
 import Category from './Category';
 import CategoryCreator from './CategoryCreator';
 import NewCategoryButton from './NewCategoryButton';
@@ -121,22 +120,19 @@ class Categories extends React.Component<TProps, TState> {
     const { categoryCreator } = this.state;
 
     return (
-      <div>
-        <h2>Categories:</h2>
-        <ul className="categories">
-          <NewCategoryButton onNewCategoryClick={this.onNewCategoryClick} />
-          {categories.items.map(this.renderExistingCategory)}
-          {categoryCreator && (
-            <CategoryCreator
-              {...categoryCreator}
-              onChange={this.setTitle}
-              onLockClick={this.onLockClick}
-              onAddClick={this.onAddClick}
-              onCancelClick={this.onCancelClick}
-            />
-          )}
-        </ul>
-      </div>
+      <Row type="flex">
+        <NewCategoryButton onNewCategoryClick={this.onNewCategoryClick} />
+        {categories.items.map(this.renderExistingCategory)}
+        {categoryCreator && (
+          <CategoryCreator
+            {...categoryCreator}
+            onChange={this.setTitle}
+            onLockClick={this.onLockClick}
+            onAddClick={this.onAddClick}
+            onCancelClick={this.onCancelClick}
+          />
+        )}
+      </Row>
     );
   }
 }

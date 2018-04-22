@@ -6,7 +6,7 @@ import {
   ADD_CATEGORY_SUCCESS,
   ADD_CATEGORY_FAILURE,
   SET_CATEGORY,
-} from '../../constants';
+} from 'store/constants';
 
 const initialState = {
   items: [],

@@ -1,8 +1,8 @@
 // @flow
-import Dropzone from 'react-dropzone';
 import * as React from 'react';
+import { Row } from 'antd';
+import { StyledDropzone } from './styled';
 import Category from './Category';
-import './index.css';
 
 type TProps = {
   categories: Array<TCategory>,
@@ -23,29 +23,22 @@ class Drop extends React.Component<TProps> {
     this.dropzone = dropzone;
   };
   renderCategory = (category: TCategory) => (
-    <Category
-      category={category}
-      key={`dropzone_${category.title}`}
-      className="dropzone__category"
-    />
+    <Category category={category} key={`dropzone_${category.title}`} />
   );
   render() {
     const { showDropzone, onDragLeave } = this.props;
     return (
-      <div
-        className={showDropzone ? 'dropzone--active' : 'dropzone--inactive'}
-        onDragLeave={onDragLeave}
-      >
-        <Dropzone
-          ref={this.assignRef}
+      <div onDragLeave={onDragLeave}>
+        <StyledDropzone
+          isActive={showDropzone}
+          innerRef={this.assignRef}
           onDrop={this.onDrop}
           disableClick
-          className="dropzoneContainer"
         >
-          <ul className="dropzone__categories">
+          <Row type="flex" justify="space-between">
             {this.props.categories.map(this.renderCategory)}
-          </ul>
-        </Dropzone>
+          </Row>
+        </StyledDropzone>
       </div>
     );
   }

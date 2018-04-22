@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { API_ROOT_URL } from '../../constants';
+import { API_ROOT_URL } from 'store/constants';
 import './FullImage.css';
 
 type TProps = {
