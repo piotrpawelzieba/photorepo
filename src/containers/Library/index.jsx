@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Images, FullImage, ViewSwitch } from '../../components';
+import { Images, ViewSwitch } from '../../components';
 import {
   getPhotos,
   assignCategory,
@@ -73,9 +73,6 @@ class Library extends React.Component<TProps, TState> {
           onImageClick={this.onImageClick}
           onDeleteClick={this.onDeleteClick}
         />
-        {image && (
-          <FullImage image={image} onOverlayClick={this.onOverlayClick} />
-        )}
       </div>
     );
   }
