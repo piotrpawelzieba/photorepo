@@ -34,6 +34,7 @@
     "material-ui": "^0.19.1",
     "prop-types": "^15.6.1",
     "prop-types-extra": "^1.0.1",
+    "ramda": "^0.25.0",
     "react": "^16.3.1",
     "react-dnd": "^2.2.3",
     "react-dnd-html5-backend": "^2.2.3",
@@ -47,6 +48,7 @@
     "redux-logger": "^2.7.4",
     "redux-observable": "^0.14.1",
     "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1",
     "rxjs": "^5.0.0",
     "styled-components": "^3.2.6",
     "whatwg-fetch": "1.0.0"
@@ -83,6 +85,7 @@
     "flow-bin": "^0.68.0",
     "html-webpack-plugin": "2.22.0",
     "ignore-styles": "^5.0.1",
+    "jest": "^23.1.0",
     "npm-run-all": "^4.1.2",
     "nsp": "^3.2.1",
     "open": "^0.0.5",

@@ -8,19 +8,11 @@ import {
 } from 'store/redux/actions/categoriesActions';
 import { assignCategory } from 'store/redux/actions/photoActions';
 import Categories from './components';
+import { selectCategories } from './redux/selectors';
 
-const mapStateToProps = state => {
-  const categories = {
-    ...state.categories,
-    items: state.categories.items.map(category => ({
-      ...category,
-      count: state.images.items.filter(img => img.category === category.title)
-        .length,
-    })),
-  };
-
-  return { categories };
-};
+const mapStateToProps = state => ({
+  categories: selectCategories(state),
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
