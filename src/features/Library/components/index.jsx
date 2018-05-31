@@ -1,14 +1,8 @@
 /*      React dependencies      */
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Images, ViewSwitch } from '../../components';
-import {
-  getPhotos,
-  assignCategory,
-  deletePhoto,
-} from '../../store/redux/actions/photoActions';
+import ViewSwitch from './ViewSwitch';
+import Images from './Images';
 
 type TProps = {
   images: Array<TImage>,
@@ -22,7 +16,7 @@ type TState = {
   listmode: boolean,
 };
 
-class Library extends React.Component<TProps, TState> {
+export default class Library extends React.Component<TProps, TState> {
   state = {
     image: '',
     listmode: true,
@@ -59,7 +53,6 @@ class Library extends React.Component<TProps, TState> {
   };
 
   render() {
-    const { image } = this.state;
     return (
       <div>
         <ViewSwitch
@@ -77,21 +70,3 @@ class Library extends React.Component<TProps, TState> {
     );
   }
 }
-
-const mapStateToProps = ({ images, categories }) => ({
-  images: images.items.filter(
-    img => img.category === categories.current || !categories.current,
-  ),
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      getPhotos,
-      assignCategory,
-      deletePhoto,
-    },
-    dispatch,
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(Library);

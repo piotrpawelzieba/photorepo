@@ -1,13 +1,13 @@
 // @flow
 import React, { Component } from 'react';
 import ReduxToastr from 'react-redux-toastr';
-import { Row } from 'antd';
+import { Row, Col } from 'antd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import type { Match } from 'react-router-dom';
-import Categories from 'containers/Categories';
-import Library from 'containers/Library';
-import Dropzone from 'containers/Dropzone';
+import Categories from 'features/Categories';
+import Library from 'features/Library';
+import Dropzone from 'features/Dropzone';
 import './index.css';
 
 type TProps = {
@@ -53,7 +53,9 @@ class Home extends Component<TProps, TState> {
           <h1>Library</h1>
         </Row>
         <Categories activeCategory={category} />
-        <Library />
+        <Col span={24}>
+          <Library />
+        </Col>
         <div>
           <Dropzone
             onDragLeave={this.onDragLeave}

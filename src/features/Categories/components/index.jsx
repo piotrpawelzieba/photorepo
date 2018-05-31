@@ -118,7 +118,6 @@ class Categories extends React.Component<TProps, TState> {
   render() {
     const { categories } = this.props;
     const { categoryCreator } = this.state;
-
     return (
       <Row type="flex">
         <NewCategoryButton onNewCategoryClick={this.onNewCategoryClick} />

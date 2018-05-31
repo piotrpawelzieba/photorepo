@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { Row, Col } from 'antd';
 import { Button } from 'shared/styled';
@@ -23,7 +24,9 @@ const isActiveStyles = `
   color: white;
   `;
 
-export const StyledCategory = styled(Col)`
+export const StyledCategory = styled(
+  ({ canDrop, isOver, isActive, ...props }) => React.createElement(Col, props),
+)`
   &:hover {
     background: #47d787;
     color: white;

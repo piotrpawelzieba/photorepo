@@ -1,5 +1,6 @@
-import Dropzone from 'react-dropzone';
+import React from 'react';
 import styled from 'styled-components';
+import { Col } from 'antd';
 
 const styleActive = `
   background: #47D787;
@@ -22,9 +23,15 @@ const styleInactive = `
   left:0;
 `;
 
-export const StyledDropzone = styled(Dropzone)`
+export const StyledDropzoneWrapper = styled(({ isActive, ...props }) =>
+  React.createElement(Col, props),
+)`
   width: 100%;
   ${({ isActive }) => (isActive ? styleActive : styleInactive)};
+  & > div {
+    width: 100% !important;
+    height: inherit !important;
+  }
 `;
 
 export const StyledDropzoneCategory = styled.div`

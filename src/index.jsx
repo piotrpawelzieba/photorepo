@@ -16,12 +16,14 @@ import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 import { createEpicMiddleware } from 'redux-observable';
 import { rootEpic, rootReducer } from 'store/redux';
-import Home from './Routes/Home';
-import Edit from './Routes/Edit';
-import Users from './Routes/Users';
+import Home from './routes/Home';
+import Edit from './routes/Edit';
+import Users from './routes/Users';
+import { AppWrapper } from './shared/styled';
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
 const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
+console.log({ store });
 
 const Links = () => (
   <Breadcrumb>
@@ -44,24 +46,26 @@ const Links = () => (
 );
 
 const App = () => (
-  <LocaleProvider>
-    <Provider store={store}>
-      <Router>
-        <Col>
-          <Row>
-            <Links />
-          </Row>
-          <Switch>
-            <Route exact path="/?" component={Home} />
-            <Route path="/edit" component={Edit} />
-            <Route path="/users" component={Users} />
-            <Route path="/:category?" component={Home} />
-            <Route render={() => <h1>Page Not Found</h1>} />
-          </Switch>
-        </Col>
-      </Router>
-    </Provider>
-  </LocaleProvider>
+  <AppWrapper>
+    <LocaleProvider>
+      <Provider store={store}>
+        <Router>
+          <Col>
+            <Row>
+              <Links />
+            </Row>
+            <Switch>
+              <Route exact path="/?" component={Home} />
+              <Route path="/edit" component={Edit} />
+              <Route path="/users" component={Users} />
+              <Route path="/:category?" component={Home} />
+              <Route render={() => <h1>Page Not Found</h1>} />
+            </Switch>
+          </Col>
+        </Router>
+      </Provider>
+    </LocaleProvider>
+  </AppWrapper>
 );
 
 const container = document.createElement('div');

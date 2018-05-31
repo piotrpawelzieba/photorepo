@@ -43,12 +43,8 @@ class CategoryCreator extends React.Component<TProps> {
           onChange={onChange}
           value={title}
         />
-        <span className="categories__icons">
-          <Locker
-            className="categories__icon"
-            isPrivate={isPrivate}
-            onLockClick={onLockClick}
-          />
+        <span>
+          <Locker isPrivate={isPrivate} onLockClick={onLockClick} />
           <Button data-categoryTitle={title} onClick={onAddClick}>
             <FontAwesome name="check" />
           </Button>

@@ -1,6 +1,5 @@
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
-import Categories from 'components/Categories';
 import {
   removeCategory,
   addCategory,
@@ -8,6 +7,7 @@ import {
   setCategory,
 } from 'store/redux/actions/categoriesActions';
 import { assignCategory } from 'store/redux/actions/photoActions';
+import Categories from './components';
 
 const mapStateToProps = state => {
   const categories = {
@@ -34,4 +34,6 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withConnect)(Categories);

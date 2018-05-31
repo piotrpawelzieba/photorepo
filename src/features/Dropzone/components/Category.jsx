@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { Col } from 'antd';
 import { StyledDropzoneCategory } from './styled';
 
 const onDragEnter = (event: SyntheticEvent<HTMLButtonElement>) => {
@@ -19,14 +18,12 @@ type TProps = {
 };
 
 const Category = ({ category }: TProps) => (
-  <Col>
-    <StyledDropzoneCategory
-      data-category={category.title}
-      onDragEnter={onDragEnter}
-      onDragLeave={onDragLeave}
-    >
-      <div>{category.title}</div>
-    </StyledDropzoneCategory>
-  </Col>
+  <StyledDropzoneCategory
+    data-category={category.title}
+    onDragEnter={onDragEnter}
+    onDragLeave={onDragLeave}
+  >
+    <div>{category.title}</div>
+  </StyledDropzoneCategory>
 );
 export default Category;
