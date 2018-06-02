@@ -10,7 +10,7 @@ import {
 import { LocaleProvider, Breadcrumb, Col, Row } from 'antd';
 
 import { render } from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 /*      middlewares         */
 
@@ -22,7 +22,11 @@ import Users from './routes/Users';
 import { AppWrapper } from './shared/styled';
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
-const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(epicMiddleware)),
+);
 console.log({ store });
 
 const Links = () => (
