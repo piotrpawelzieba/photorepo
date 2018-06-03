@@ -22,12 +22,12 @@ import Users from './routes/Users';
 import { AppWrapper } from './shared/styled';
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
+// eslint-disable-next-line
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(epicMiddleware)),
 );
-console.log({ store });
 
 const Links = () => (
   <Breadcrumb>

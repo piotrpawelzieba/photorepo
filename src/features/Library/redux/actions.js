@@ -1,3 +1,5 @@
+// @flow
+import createActionCreator from 'utils/createActionCreator';
 import {
   GET_PHOTOS,
   GET_PHOTOS_SUCCESS,
@@ -11,11 +13,11 @@ import {
   DELETE_PHOTO,
   DELETE_PHOTO_SUCCESS,
   DELETE_PHOTO_FAILURE,
-} from 'store/constants';
+} from './constants';
 
-import { createActionCreator } from './utils';
-
-export const getPhotos = createActionCreator(GET_PHOTOS);
+export const getPhotos = createActionCreator(GET_PHOTOS, payload => ({
+  payload,
+}));
 export const getPhotosSuccess = createActionCreator(GET_PHOTOS_SUCCESS);
 export const getPhotosFailure = createActionCreator(GET_PHOTOS_FAILURE);
 

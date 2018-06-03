@@ -26,6 +26,11 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = comp => {
+  debugger; //eslint-disable-line
+  const connected = connect(mapStateToProps, mapDispatchToProps)(comp);
+  debugger; //eslint-disable-line
+  return connected;
+};
 
 export default compose(withConnect)(Categories);

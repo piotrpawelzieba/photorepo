@@ -3,8 +3,8 @@ import * as React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { DragSource } from 'react-dnd';
 import { Card } from 'antd';
-import { API_ROOT_URL } from 'store/constants';
 import { Button, Img } from 'shared/styled';
+import { API_ROOT_URL } from '../../../api/utils';
 
 type TProps = {
   id: number,

@@ -8,6 +8,7 @@ import {
   uploadPhoto,
   deletePhoto,
 } from './epics/photos';
+import handlers from 'features/Categories/redux/reducer';
 
 import photoReducer from './reducers/photoReducer';
 import categoriesReducer from './reducers/categoriesReducer';

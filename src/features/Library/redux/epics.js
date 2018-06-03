@@ -11,7 +11,7 @@ import {
   UPLOAD_PHOTO,
   ASSIGN_CATEGORY,
   DELETE_PHOTO,
-} from 'store/constants';
+} from './constants';
 
 import {
   getPhotosSuccess,
@@ -22,7 +22,7 @@ import {
   uploadPhotoSuccess,
   deletePhotoFailure,
   deletePhotoSuccess,
-} from 'store/redux/actions/photoActions';
+} from './actions';
 
 export const getPhotos = action$ =>
   action$

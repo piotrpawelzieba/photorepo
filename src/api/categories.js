@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_ROOT_URL } from 'store/constants';
+import { API_ROOT_URL } from './utils';
 
 export const postCategory = ({ title, isPrivate }) =>
   axios.post(

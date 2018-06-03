@@ -30,6 +30,11 @@ class Categories extends React.Component<TProps, TState> {
   state = {
     categoryCreator: null,
   };
+
+  componentWillMount() {
+    debugger; //eslint-disable-line
+  }
+
   componentDidMount() {
     const { activeCategory, setCategory, getCategories } = this.props;
     getCategories();

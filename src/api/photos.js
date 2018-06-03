@@ -1,6 +1,6 @@
 // @flow
 import axios from 'axios';
-import { API_ROOT_URL } from 'store/constants';
+import { API_ROOT_URL } from './utils';
 
 export const fetchPhotos = () => axios.get(`${API_ROOT_URL}/api/photos`);
 export const updatePhoto = (id: number, payload: *) =>
